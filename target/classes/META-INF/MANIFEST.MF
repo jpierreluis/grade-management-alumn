@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: jean-
+Build-Jdk: 15.0.1
+Implementation-Title: grade-management-alumn
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.api.management.backend
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/grade-management-ws
+Created-By: Maven Integration for Eclipse
+

@@ -1,0 +1,17 @@
+com\api\management\backend\models\entity\dto\ReporteDto.class
+com\api\management\backend\commons\JasperReportManager.class
+com\api\management\backend\models\dao\IAlumnoDao.class
+com\api\management\backend\models\dao\IMateriaDao.class
+com\api\management\backend\models\entity\Alumno.class
+com\api\management\backend\models\entity\vo\Promedio.class
+com\api\management\backend\models\entity\vo\ListGrade.class
+com\api\management\backend\StoreBackentWsApplication.class
+com\api\management\backend\models\entity\Calificacion.class
+com\api\management\backend\models\services\IReportService.class
+com\api\management\backend\models\services\IAlumnoService.class
+com\api\management\backend\controllers\IndexRestController.class
+com\api\management\backend\models\dao\ICalificacionDao.class
+com\api\management\backend\models\entity\Materia.class
+com\api\management\backend\enums\TipoReporteEnum.class
+com\api\management\backend\models\services\imp\AlumnoServiceImpl.class
+com\api\management\backend\models\services\imp\ReportServiceImpl.class
