@@ -14,5 +14,9 @@ public interface IAlumnoService {
 
 	public ResponseEntity<?> deleteGrade(Integer idCalificacion);
 
+	public ResponseEntity<?> getAllMaterias();
+
+	public ResponseEntity<?> getAllAlumnos();
+
 	
 }

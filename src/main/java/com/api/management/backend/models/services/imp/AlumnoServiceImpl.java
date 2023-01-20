@@ -37,10 +37,10 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		Map<Object, Object> response = new HashMap<Object, Object>();
 
 		List<Alumno> list;
+		List<Object> lista = new ArrayList<Object>();
 
 		try {
 			list = alumnoDao.findAll();
-			List<Object> lista = new ArrayList<Object>();
 			for (Alumno alumno : list) {
 				
 				double promedio = 0d;
@@ -67,7 +67,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
 			response.put("error", ex.getMessage().concat(": ").concat(ex.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<Object, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<Object>(list, HttpStatus.OK);
+		return new ResponseEntity<Object>(lista, HttpStatus.OK);
 	}
 
 	@Override
@@ -237,6 +237,36 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		response.put("msg", "calificacion actualizada");
 
 		return new ResponseEntity<Object>(response, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<?> getAllMaterias() {
+		Map<Object, Object> response = new HashMap<Object, Object>();
+
+		List<Materia> list;
+		try {
+			list = materiaDao.getMaterias();
+		} catch (DataAccessException ex) {
+			response.put("message", "Error la consulta no se pudo realizar");
+			response.put("error", ex.getMessage().concat(": ").concat(ex.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<Object, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Object>(list, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<?> getAllAlumnos() {
+		Map<Object, Object> response = new HashMap<Object, Object>();
+
+		List<Alumno> list;
+		try {
+			list = alumnoDao.findAll();
+		} catch (DataAccessException ex) {
+			response.put("message", "Error la consulta no se pudo realizar");
+			response.put("error", ex.getMessage().concat(": ").concat(ex.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<Object, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<Object>(list, HttpStatus.OK);
 	}
 
 }
