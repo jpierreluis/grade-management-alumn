@@ -29,9 +29,7 @@ export class AlumnoFormComponent implements OnInit {
   ngOnInit(): void {
     if(this.id != undefined){
       this.alumnoService.getElement(this.id).subscribe(response=>{
-        this.alumno.nombre = response.body.nombre;
-        this.alumno.ap_paterno = response.body.ap_paterno;
-        this.alumno.ap_materno = response.body.ap_materno;
+        this.alumno = response.body;
       },error=>{
         
       });
