@@ -13,25 +13,13 @@
                 </a>
             </td>
         </tr>
-        <tr>
+        <tr *ngFor="let element of list" (click)="selectItem(element.id)">
             <td><img src="assets/img/materia.png" alt="" width="30"></td>
-            <td>Programacion orientada a objetos</td>
+            <td>{{element.nombre}}</td>
         </tr>
-        <tr>
-            <td><img src="assets/img/materia.png" width="30"></td>
-            <td>Matematicas discretas</td>
-        </tr>
-        <tr>
-            <td><img src="assets/img/materia.png" width="30"></td>
-            <td>Contabilidad y costos</td>
-        </tr>
-        <tr>
-            <td><img src="assets/img/materia.png" width="30"></td>
-            <td>Derecho I</td>
-        </tr>
-
     </tbody>
 </table>
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-end">

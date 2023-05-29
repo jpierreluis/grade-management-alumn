@@ -19,6 +19,7 @@ import { ContextualMenuComponent } from './components/contextual-menu/contextual
 import { ReactiveFormsModule } from '@angular/forms';
 import { MateriaUpdateComponent } from './pages/materia-update/materia-update.component';
 import { AlumnoUpdateComponent } from './pages/alumno-update/alumno-update.component';
+import { AsignarMateriaComponent } from './pages/asignar-materia/asignar-materia.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AlumnoUpdateComponent } from './pages/alumno-update/alumno-update.compo
     MateriaFormComponent,
     ContextualMenuComponent,
     MateriaUpdateComponent,
-    AlumnoUpdateComponent
+    AlumnoUpdateComponent,
+    AsignarMateriaComponent
   ],
   imports: [
     BrowserModule,

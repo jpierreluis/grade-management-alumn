@@ -1,5 +1,5 @@
 export class Materia{
     id:number=-1;
     nombre:string="";
-    activo:number=0;
+    activo:number=1;
 }

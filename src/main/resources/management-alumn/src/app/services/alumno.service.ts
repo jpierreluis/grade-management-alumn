@@ -23,8 +23,8 @@ export class AlumnoService {
     return this.http.post<any>(`${this.endPoind}`,alumno);
   }
 
-  delete(id:number):Observable<any>{
-    return this.http.delete<any>(`${this.endPoind}${id}`);
+  delete(id:string):Observable<any>{
+    return this.http.delete<any>(`${this.endPoind}?id=${id}`);
   }
 
   getAll():Observable<Alumno[]>{

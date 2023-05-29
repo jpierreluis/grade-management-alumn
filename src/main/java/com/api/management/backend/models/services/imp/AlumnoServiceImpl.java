@@ -43,23 +43,25 @@ public class AlumnoServiceImpl implements IAlumnoService {
 			list = alumnoDao.findAll();
 			for (Alumno alumno : list) {
 				
-				double promedio = 0d;
-				for (Calificacion item : alumno.getCalificaciones()) {
-					ListGrade calificacion = new ListGrade();
-					calificacion.setId(alumno.getId());
-					calificacion.setName(alumno.getNombre());
-					calificacion.setLastname(alumno.getApPaterno() + " " + alumno.getApPaterno());
-					calificacion.setMatter(item.getMateria().getNombre());
-					calificacion.setGrade(item.getCalificacion());
-					calificacion.setIdCalificacion(item.getId());
-					calificacion.setRegistrationDate(item.getFechaRegistroFormateada());
-					lista.add(calificacion);
-					promedio = promedio + item.getCalificacion();
-				}
+				if(alumno.getCalificaciones().size()>0) {
+					double promedio = 0d;
+					for (Calificacion item : alumno.getCalificaciones()) {
+						ListGrade calificacion = new ListGrade();
+						calificacion.setId(alumno.getId());
+						calificacion.setName(alumno.getNombre());
+						calificacion.setLastname(alumno.getApPaterno() + " " + alumno.getApPaterno());
+						calificacion.setMatter(item.getMateria().getNombre());
+						calificacion.setGrade(item.getCalificacion());
+						calificacion.setIdCalificacion(item.getId());
+						calificacion.setRegistrationDate(item.getFechaRegistroFormateada());
+						lista.add(calificacion);
+						promedio = promedio + item.getCalificacion();
+					}
 
-				Promedio p = new Promedio();
-				p.setPromedio((promedio / alumno.getCalificaciones().size()));
-				lista.add(p);
+					Promedio p = new Promedio();
+					p.setPromedio((promedio / alumno.getCalificaciones().size()));
+					lista.add(p);					
+				}
 			}
 
 		} catch (DataAccessException ex) {

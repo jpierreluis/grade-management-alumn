@@ -1,0 +1,108 @@
+<div class="row">
+    <div class="col-md-3" *ngIf="isEdit">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Cambio de calificación</div>
+            </div>
+            <div class="card-body">
+                <fieldset>
+                    <div class="mb-3">
+                        <label for="txtCalificacion" class="form-label">Calificación</label>
+                        <input type="number" id="txtCalificacion" [(ngModel)]="grade.calificacion" class="form-control"
+                            placeholder="Calificación">
+                    </div>
+                    <button type="button" class="btn btn-danger ml-2" (click)="clickToCancel()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" (click)="clickToChange()">Guardar</button>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    Asignar materias
+                </div>
+            </div>
+            <div class="card-body">
+                <a href="/api/pdf" download="Calificaciones.pdf" target="_blank">Descargar PDF</a>
+                <div class="row">
+                    <div class="alert alert-warning" role="alert" *ngIf="isAlert">
+                        <div class="row">
+                            <div class="col-11">
+                                <strong>{{titlealert}}</strong> {{messagealert}}
+                            </div>
+                            <div class="col-1">
+                                <button type="button" class="btn-close" (click)="closeAlert()"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive" style="height: 400px;">
+                    <table class="table">
+                        <thead class="table-secondary-text-white    ">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Materia</th>
+                                <th>Calificación</th>
+                                <th>Fecha de Registro</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <label >Alumno</label>
+                                    <select class="form-control" [(ngModel)]="selAlumno">
+                                        <option selected="true" disabled="disabled">Seleccionar Alumno</option>
+                                        <option *ngFor="let alumno of alumnos" [ngValue]="alumno">{{alumno.nombre}}
+                                            {{alumno.ap_paterno}}
+                                            {{alumno.ap_materno}}</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label >Materia</label>
+                                    <select class="form-control" [(ngModel)]="selMateria">
+                                        <option selected="true" disabled="disabled">Seleccionar Materia</option>
+                                        <option *ngFor="let materia of materias" [ngValue]="materia">{{materia.nombre}}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <label >Calificacion</label>
+                                    <input type="number" [(ngModel)]="numCalificacion" class="form-control"
+                                        placeholder="Calificacion">
+                                </td>
+                                <td></td>
+                                <td>
+                                    <button class="btn btn-primary pull-righ" (click)="clickToSave()">Asignar
+                                        Materia</button>
+                                </td>
+                            </tr>
+                            <tr *ngFor="let element of list">
+                                <td *ngIf="isGrade(element)">{{element.nombre}}</td>
+                                <td *ngIf="isGrade(element)">{{element.apellido}}</td>
+                                <td *ngIf="isGrade(element)">{{element.materia}}</td>
+                                <td *ngIf="isGrade(element)">{{element.calificacion}}</td>
+                                <td *ngIf="isGrade(element)">{{element.fecha_registro}}</td>
+                                <td *ngIf="isGrade(element)">
+                                    <button class="btn btn-sm btn-warning mr-2"
+                                        (click)="clickToGrade(element)">Modificar</button>
+                                    <button class="btn btn-sm btn-danger ml-2"
+                                        (click)="clickToDeleteGrade(element)">Eliminar</button>
+
+                                </td>
+                                <td *ngIf="!isGrade(element)" colspan="6">
+                                    Promedio: {{element.promedio | number}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

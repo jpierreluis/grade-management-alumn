@@ -10,6 +10,11 @@ import com.api.management.backend.models.entity.Materia;
 
 public interface IMateriaDao extends JpaRepository<Materia, Integer>{
 	@Query(value = "select m from Materia m where "
-			+ "activo=1")
+			+ "activo=1 order by m.id desc")
 	public List<Materia> getMaterias();
+	
+	@Query(value = "select m from Materia m where "
+			+ "activo=1 order by m.id desc")
+	public List<Materia> getAll();
+
 }

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./alumno-form.component.css']
 })
 export class AlumnoFormComponent implements OnInit {
-  @Input('id') id?:string;
+  @Input('id') id?: string;
 
   public alumno: Alumno = new Alumno();
   form: FormGroup;
@@ -23,32 +23,48 @@ export class AlumnoFormComponent implements OnInit {
       ap_paterno: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(80)]],
       ap_materno: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(80)]]
     });
-    
+
   }
 
   ngOnInit(): void {
-    if(this.id != undefined){
-      this.alumnoService.getElement(this.id).subscribe(response=>{
+    if (this.id != undefined) {
+      this.alumnoService.getElement(this.id).subscribe(response => {
         this.alumno = response.body;
-      },error=>{
-        
+      }, error => {
+
       });
 
     }
   }
 
   save(): void {
-    if(this.id != undefined){
+    if (this.id != undefined) {
       this.alumno.id_t_usuarios = parseInt(this.id);
     }
-    
+
     this.alumnoService.save(this.alumno).subscribe(response => {
       console.log(response);
       this.router.navigate(['alumno'])
-    },error => {
-        console.log(error);
-      })
+    }, error => {
+      console.log(error);
+    })
   }
+
+
+
+  delete(): void {
+    if(confirm("¿Deseas continuar?")){
+      if (this.id != undefined) {
+        this.alumnoService.delete(this.id).subscribe(response => {
+          console.log(response);
+          this.router.navigate(['alumno'])
+        }, error => {
+          console.log(error);
+        })
+      }  
+    }
+  }
+
 
 
 }
