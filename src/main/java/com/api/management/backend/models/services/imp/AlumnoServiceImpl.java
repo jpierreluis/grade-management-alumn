@@ -260,7 +260,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
 
 		List<Alumno> list;
 		try {
-			list = alumnoDao.findAll();
+			list = alumnoDao.getAlumnsActive();
 		} catch (DataAccessException ex) {
 			response.put("message", "Error la consulta no se pudo realizar");
 			response.put("error", ex.getMessage().concat(": ").concat(ex.getMostSpecificCause().getMessage()));
@@ -268,5 +268,70 @@ public class AlumnoServiceImpl implements IAlumnoService {
 		}
 		return new ResponseEntity<Object>(list, HttpStatus.OK);
 	}
+
+	@Override
+	public ResponseEntity<?> save(Alumno alumno) {
+		Map<Object, Object> response = new HashMap<Object, Object>();
+		try {
+			Alumno cal = alumnoDao.save(alumno);
+		} catch (DataAccessException ex) {
+			response.put("success", "Faild");
+			response.put("msg", ex.getMessage());
+			return new ResponseEntity<Map<Object, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception ex) {
+			response.put("success", "Faild");
+			response.put("msg", ex.getMessage());
+			return new ResponseEntity<Map<Object, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		response.put("success", "OK");
+		response.put("msg", "calificacion actualizada");
+
+		return new ResponseEntity<Object>(response, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<?> delete(int id) {
+		Map<Object, Object> response = new HashMap<Object, Object>();
+		try {
+			Alumno alumno = alumnoDao.findById(id).orElse(null);
+			alumno.setActivo(0);
+			alumnoDao.save(alumno);
+		} catch (DataAccessException ex) {
+			response.put("success", "Faild");
+			response.put("msg", ex.getMessage());
+			return new ResponseEntity<Map<Object, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception ex) {
+			response.put("success", "Faild");
+			response.put("msg", ex.getMessage());
+			return new ResponseEntity<Map<Object, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		response.put("success", "OK");
+		response.put("msg", "Alumno eliminado");
+		return new ResponseEntity<Object>(response, HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<?> getById(int id) {
+		Map<Object, Object> response = new HashMap<Object, Object>();
+		Alumno alumno;
+		try {
+			alumno = alumnoDao.findById(id).orElse(null);
+		} catch (DataAccessException ex) {
+			response.put("success", "Faild");
+			response.put("msg", ex.getMessage());
+			return new ResponseEntity<Map<Object, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (Exception ex) {
+			response.put("success", "Faild");
+			response.put("msg", ex.getMessage());
+			return new ResponseEntity<Map<Object, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		response.put("success", "OK");
+		response.put("msg", "calificacion actualizada");
+		response.put("body", alumno);
+
+		return new ResponseEntity<Object>(response, HttpStatus.OK);
+	}
+	
+	
 
 }

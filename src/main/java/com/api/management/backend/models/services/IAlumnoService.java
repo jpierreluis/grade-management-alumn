@@ -2,6 +2,8 @@ package com.api.management.backend.models.services;
 
 import org.springframework.http.ResponseEntity;
 
+import com.api.management.backend.models.entity.Alumno;
+
 public interface IAlumnoService {
 
 	public ResponseEntity<?> getAll();
@@ -17,6 +19,12 @@ public interface IAlumnoService {
 	public ResponseEntity<?> getAllMaterias();
 
 	public ResponseEntity<?> getAllAlumnos();
+	
+	public ResponseEntity<?> save(Alumno alumno);
+
+	public ResponseEntity<?> delete(int id);
+
+	public ResponseEntity<?> getById(int id);
 
 	
 }

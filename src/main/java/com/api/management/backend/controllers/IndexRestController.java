@@ -68,7 +68,7 @@ public class IndexRestController {
 	public ResponseEntity<byte[]> pdf(){
 		return reportService.generatePdf();
 	}
-	
+	/*
 	@GetMapping("/materias")
 	public ResponseEntity<?> getAllMaterias() {
 		return alumnoService.getAllMaterias();
@@ -77,7 +77,10 @@ public class IndexRestController {
 	@GetMapping("/alumnos")
 	public ResponseEntity<?> getAllAlumnos() {
 		return alumnoService.getAllAlumnos();
-	}
+	} * 
+	 * */
+	
+	
 
 
 }
