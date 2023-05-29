@@ -1,0 +1,42 @@
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-secondary-text-white">
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido Paterno</th>
+                <th>Apellido Materno</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th class="text-center table-secondary" colspan="5" (click)="goToCreate()">
+                    <a>
+                        <img src="assets/img/agregar.png" alt="Agregar un nuevo alumno" width="20">
+                    </a>
+                </th>
+            </tr>
+            <tr *ngFor="let element of list" (click)="selectItem(element.id_t_usuarios)">
+                <td><img src="assets/img/alumno.png" alt="" width="30"></td>
+                <td>{{element.nombre}}</td>
+                <td>{{element.ap_paterno}}</td>
+                <td>{{element.ap_materno}}</td>
+            </tr>    
+        </tbody>
+    </table>
+    <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">Siguiente</a>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,45 @@
+<form class="container-fluid" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="name_txt" class="form-label">Nombre</label>
+            <input formControlName="nombre" [(ngModel)]="alumno.nombre" type="text" id="name_txt" class="form-control" placeholder="Nombre">
+            <div *ngIf="form.get('nombre')?.errors && form.get('nombre')?.dirty">
+                <div *ngIf="form.get('nombre')?.hasError('required')" 
+                class="form-text text-danger">El campo no puede estar vacio</div>
+                <div *ngIf="form.get('nombre')?.hasError('minlength')" 
+                class="form-text text-danger">El campo debe tener mas de 4 caracteres</div>
+                <div *ngIf="form.get('nombre')?.hasError('maxlength')" 
+                class="form-text text-danger">El campo solo permite 80 caracteres</div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <label for="ap_paterno" class="form-label">Apellido Paterno</label>
+            <input formControlName="ap_paterno" [(ngModel)]="alumno.ap_paterno" type="text" class="form-control" id="ap_paterno" placeholder="Apellido Paterno">
+            <div *ngIf="form.get('ap_paterno')?.errors && form.get('ap_paterno')?.dirty">
+                <div *ngIf="form.get('ap_paterno')?.hasError('required')" 
+                class="form-text text-danger">El campo no puede estar vacio</div>
+                <div *ngIf="form.get('ap_paterno')?.hasError('minlength')" 
+                class="form-text text-danger">El campo debe tener mas de 4 caracteres</div>
+                <div *ngIf="form.get('ap_paterno')?.hasError('maxlength')" 
+                class="form-text text-danger">El campo solo permite 80 caracteres</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label for="ap_materno" class="form-label">Apellido Materno</label>
+            <input formControlName="ap_materno" [(ngModel)]="alumno.ap_materno" type="email" class="form-control" id="ap_materno">
+            <div *ngIf="form.get('ap_materno')?.errors && form.get('ap_materno')?.dirty">
+                <div *ngIf="form.get('ap_materno')?.hasError('required')" 
+                class="form-text text-danger">El campo no puede estar vacio</div>
+                <div *ngIf="form.get('ap_materno')?.hasError('minlength')" 
+                class="form-text text-danger">El campo debe tener mas de 4 caracteres</div>
+                <div *ngIf="form.get('ap_materno')?.hasError('maxlength')" 
+                class="form-text text-danger">El campo solo permite 80 caracteres</div>
+            </div>
+        </div>
+    </div>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-secondary" routerLink="/alumno">Regresar</a>
+        <button type="submit" class="btn btn-primary ml-3"[disabled]="form.invalid">Guardar</button>
+    </div>
+</form>
